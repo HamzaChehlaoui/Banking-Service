@@ -32,4 +32,23 @@ public class Account implements AccountService {
         transactions.add(transaction);
 
     }
+
+    @Override
+    public void withdraw(int amount , LocalDate date){
+        if(amount <= 0 ){
+            throw new IllegalArgumentException("Amount must be positive");
+        }
+        if(date == null){
+            throw new IllegalArgumentException("Date cannot be null");
+        }
+        if(amount > balance){
+            throw new IllegalArgumentException("Insufficient  balance");
+        }
+
+        balance -= amount ;
+
+        Transaction transaction = new Transaction(date , -amount , balance);
+
+        transactions.add(transaction);
+    }
 }
