@@ -3,21 +3,20 @@ package com.banking.service;
 import com.banking.entity.Transaction;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Account implements AccountService {
 
-
-    private final ArrayList<Transaction>transactions ;
-    private int  balance ;
+    private final ArrayList<Transaction>transactions;
+    private int  balance;
 
     public Account(){
         this.transactions = new ArrayList<>();
         this.balance = 0;
     }
 
-
-    private void validateTransactionInput(LocalDate date ,int amount){
+    private void validateTransactionInput(int amount ,LocalDate date){
         if(amount <= 0 ){
             throw new IllegalArgumentException("Amount must be positive");
         }
@@ -31,23 +30,22 @@ public class Account implements AccountService {
             }
         }
     }
-    @Override
-    public void deposit(int amount , LocalDate date){
 
-        validateTransactionInput(date ,amount);
+    public void deposit(int amount ,LocalDate date){
+
+        validateTransactionInput(amount ,date);
 
         balance += amount ;
 
-        Transaction transaction = new Transaction(date , amount , balance);
+        Transaction transaction = new Transaction(date ,amount ,balance);
 
         transactions.add(transaction);
 
     }
 
-    @Override
-    public void withdraw(int amount , LocalDate date){
+    public void withdraw(int amount ,LocalDate date){
 
-        validateTransactionInput(date ,amount);
+        validateTransactionInput(amount ,date);
 
         if(amount > balance){
             throw new IllegalArgumentException("Insufficient  balance");
@@ -59,8 +57,20 @@ public class Account implements AccountService {
 
         transactions.add(transaction);
     }
+     @Override
+     public void deposit(int amount){
+        deposit(amount , LocalDate.now());
+     }
+
+     @Override
+     public void withdraw(int amount){
+        withdraw(amount , LocalDate.now());
+     }
+
     @Override
     public void printStatement(){
+
+
         System.out.println("Date       | Amount  | Balance");
         System.out.println("--------------------------------");
 
