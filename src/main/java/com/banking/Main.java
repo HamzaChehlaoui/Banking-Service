@@ -2,8 +2,6 @@ package com.banking;
 
 
 import com.banking.service.Account;
-import com.banking.service.AccountService;
-
 import java.time.LocalDate;
 
 public class Main
@@ -11,7 +9,7 @@ public class Main
     public static void main( String[] args )
     {
 
-        AccountService account = new Account();
+        Account account = new Account();
 
         account.deposit(1000, LocalDate.of(2025 , 12,13));
         account.deposit(2000, LocalDate.of(2025,12,15));
