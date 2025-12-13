@@ -225,7 +225,7 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 The development process and task management for this project can be tracked on GitHub Projects:
 
-🔗 **[View Project Planning Board](Yhttps://github.com/users/HamzaChehlaoui/projects/9/views/1)**
+🔗 **[View Project Planning Board](https://github.com/users/HamzaChehlaoui/projects/9/views/1)**
 
 The planning board includes:
 - ✅ Task breakdown and organization
