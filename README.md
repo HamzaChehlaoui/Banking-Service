@@ -1,5 +1,13 @@
 # 🏦 Banking Service - Technical Test Implementation
 
+<!-- Project Image/Logo -->
+<div>
+  <img src="images/BankingService.png" alt="Banking Service Project Banner" width="800"/>
+
+</div>
+
+---
+
 A robust and clean implementation of a core banking system featuring deposit, withdrawal, and transaction statement operations.
 
 ## 📋 Table of Contents
