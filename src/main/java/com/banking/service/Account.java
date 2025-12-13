@@ -69,7 +69,7 @@ public class Account implements AccountService {
 
     @Override
     public void printStatement(){
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         System.out.println("Date       | Amount  | Balance");
         System.out.println("--------------------------------");
@@ -78,7 +78,7 @@ public class Account implements AccountService {
             Transaction t = transactions.get(i);
 
             System.out.printf("%s | %6d | %6d%n" ,
-                    t.getDate(),
+                    t.getDate() .format(formatter),
                     t.getAmount(),
                     t.getBalanceAfterOperation());
         }
