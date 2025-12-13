@@ -16,14 +16,25 @@ public class Account implements AccountService {
         this.balance = 0;
     }
 
-    @Override
-    public void deposit(int amount , LocalDate date){
-        if(amount <=0 ){
+
+    private void validateTransactionInput(LocalDate date ,int amount){
+        if(amount <= 0 ){
             throw new IllegalArgumentException("Amount must be positive");
         }
         if(date == null){
             throw new IllegalArgumentException("Date cannot be null");
         }
+        if (!transactions.isEmpty()) {
+            LocalDate lastDate = transactions.get(transactions.size() - 1).getDate();
+            if (date.isBefore(lastDate)) {
+                throw new IllegalArgumentException("Transaction date cannot be before last operation date");
+            }
+        }
+    }
+    @Override
+    public void deposit(int amount , LocalDate date){
+
+        validateTransactionInput(date ,amount);
 
         balance += amount ;
 
@@ -35,12 +46,9 @@ public class Account implements AccountService {
 
     @Override
     public void withdraw(int amount , LocalDate date){
-        if(amount <= 0 ){
-            throw new IllegalArgumentException("Amount must be positive");
-        }
-        if(date == null){
-            throw new IllegalArgumentException("Date cannot be null");
-        }
+
+        validateTransactionInput(date ,amount);
+
         if(amount > balance){
             throw new IllegalArgumentException("Insufficient  balance");
         }
